@@ -1,0 +1,87 @@
+.tipping-interface {
+  width: 440px;
+  margin-top: 50px;
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  text-align: left;
+  opacity: 1;
+
+  transition-property: left, opacity;
+  transition-duration: 1s;
+
+  animation-duration: 1s;
+  animation-name: slidein;
+
+  .tip-info {
+    margin-top: -2px;
+  }
+
+  .tip-token {
+    text-align: center;
+    margin-right: 12px;
+    background: rgb(254, 109, 222);
+    display: inline-block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 8px;
+  }
+
+  .tip-token-info {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .quantity-container {
+    margin-top: 50px;
+
+    input {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 0;
+      width: 80%;
+      -webkit-appearance: none;
+      margin: 0;
+      -moz-appearance: textfield;
+      font-size: 16px;
+    }
+    .token {
+      display: inline-block;
+      float: right;
+    }
+  }
+
+  .complete {
+    &.disabled {
+      opacity: 0.3;
+    }
+    margin-top: 45px;
+    padding: 15px;
+    font-size: 18px;
+  }
+
+}
+
+@keyframes slidein {
+  from {
+    transform: translateY(100%) translateX(-50%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(-50%) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.faqMode .tipping-interface {
+  left: 150%;
+  opacity: 0;
+}
