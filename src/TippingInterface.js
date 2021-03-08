@@ -16,8 +16,9 @@ export default () => {
   const [tipAmount, setTipAmount] = useState(commaNumber(initialTipAmount));
   const walletModel = useContext(WalletModel.context);
 
+  const buttonDisabled = !walletModel.isConnected || isSending || !tipAmount.length;
   const buttonClass = classNames('complete cute-pink-btn', {
-    disabled: !walletModel.isConnected || isSending,
+    disabled: buttonDisabled,
   });
 
   const setFormattedTipAmount = amount => {
@@ -25,11 +26,10 @@ export default () => {
   };
 
   const handleSend = async () => {
-    if (isSending) return;
     if (!walletModel.isConnected) {
       WalletModel.askForWallet();
-      return;
     }
+    if (buttonDisabled) return;
     setIsSending(true);
     try {
       const amount = Number(tipAmount.replace(/,/g, ''));
