@@ -7,3 +7,14 @@ export const shortNum = donuts => {
   else val = Math.floor(donuts/100000)/10 + 'M';
   return Number.isNaN(val) ? '0' : val;
 }
+
+export const getRedditComment = async name => {
+  try {
+    const data = await fetch('https://www.reddit.com/api/info.json?id='+ name)
+      .then(response => response.json());
+    return data.data.children[0].data;
+  } catch (error) {
+    console.log('failed fetching reddit comment', error.message, error.stack);
+    return null;
+  }
+};

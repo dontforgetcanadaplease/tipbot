@@ -1,0 +1,15 @@
+.reddit-preview {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #563a3d;
+  padding: 15px;
+  border-radius: 15px;
+  color: rgb(250, 196, 182);
+  margin-top: 30px;
+  padding-top: 12px;
+  font-size: 13px;
+  line-height: 17px;
+  .author {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+}

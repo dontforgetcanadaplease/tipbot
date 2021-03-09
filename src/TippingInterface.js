@@ -2,11 +2,13 @@ import { useState, useContext } from 'react';
 import classNames from 'classnames';
 import WalletModel from './WalletModel';
 import { commaNumber } from './utils';
+import RedditPreview from './RedditPreview';
 
 import './TippingInterface.scss';
 
 const urlParams = new URLSearchParams(window.location.search);
-const recipient = urlParams.get('recipient');
+const initialRecipient = urlParams.get('recipient');
+const contentId = urlParams.get('contentId');
 const initialTipAmount = urlParams.get('tipAmount') || 1000;
 
 export default () => {
@@ -15,6 +17,8 @@ export default () => {
 
   const [tipAmount, setTipAmount] = useState(commaNumber(initialTipAmount));
   const walletModel = useContext(WalletModel.context);
+
+  const [recipient, setRecipient] = useState(initialRecipient);
 
   const buttonDisabled = !walletModel.isConnected || isSending || !tipAmount.length;
   const buttonClass = classNames('complete cute-pink-btn', {
@@ -39,11 +43,11 @@ export default () => {
     }
     setIsSending(false);
   };
-
   return <div className="tipping-interface box">
     <div className="tip-token">🍩</div>
     <div className="cute-header tip-info">Tipping /u/{recipient}</div>
     <div className="tip-token-info">EthTrader DONUTs</div>
+    <RedditPreview id={contentId} onRecipientChange={setRecipient} />
     <div className="cute-input quantity-container">
       <input value={tipAmount} onChange={e => setFormattedTipAmount(e.target.value)} />
       <div className="token">DONUT</div>
